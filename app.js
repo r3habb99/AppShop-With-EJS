@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
+const helmet = require("helmet");
+const compression = require("compression");
+
 // const { csrfSync } = require("csrf-sync");
 
 const flash = require("connect-flash");
@@ -50,6 +53,9 @@ app.set("views", "views");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
+
+app.use(helmet());
+app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
